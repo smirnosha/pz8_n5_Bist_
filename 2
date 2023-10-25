@@ -1,0 +1,74 @@
+import time
+
+
+def knapsack(cap, values, weights):
+    pass
+
+
+def knapsack(cap, values, weights):
+    items = []
+    for i in range(len(values)):
+        itemInfo = {
+            'vpw': values[i] / weights[i],
+            'weight': weights[i]
+        }
+    if len(items) == 0:
+        items.append(itemInfo)
+    else:
+        k = 0
+        while k < len(items) and items[k]['vpw'] > itemInfo['vpw']:
+            k += 1
+
+    total = 0
+    cap_left = cap
+    for item in items:
+        if cap_left - item['weight'] >= 0:
+            total += item['weight'] * item['vpw']
+            cap_left -= item['weight']
+        elif cap_left > 0:
+            total += item['vpw'] * cap_left
+            cap_left = 0
+
+
+def knapsack(cap, values, weights):
+    items = []
+    for i in range(len(values)):
+        itemInfo = {
+            'vpw': values[i] / weights[i],
+            'weight': weights[i]
+        }
+        if len(items) == 0:
+            items.append(itemInfo)
+        else:
+            k = 0
+            while k < len(items) and items[k]['vpw'] > itemInfo['vpw']:
+                k += 1
+            items.insert(k, itemInfo)
+    total = 0
+    cap_left = cap
+    for item in items:
+        if cap_left - item['weight'] >= 0:
+            total += item['weight'] * item['vpw']
+            cap_left -= item['weight']
+        elif cap_left > 0:
+            total += item['vpw'] * cap_left
+            cap_left = 0
+    return total
+
+
+start_time = time.time()
+
+# код, время выполнения которого нужно измерить
+for i in range(0, 1000000):
+    pass
+
+# конечное время
+end_time = time.time()
+
+# разница между конечным и начальным временем
+elapsed_time = end_time - start_time
+print('Elapsed time: ', elapsed_time)
+cap = 60
+values = [60, 100, 120]
+weights = [20, 50, 30]
+print(knapsack(cap, values, weights))
